@@ -2,6 +2,48 @@
 
 // Sidebar
 
+import {
+  auth
+}
+from './firebase.js'
+
+import {
+  signInWithEmailAndPassword
+}
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js"
+
+async function login(){
+
+  const email =
+    document.getElementById('email').value
+
+  const password =
+    document.getElementById('password').value
+
+  try{
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    )
+
+    alert('ログイン成功')
+
+    document
+      .getElementById('loginScreen')
+      .style.display = 'none'
+
+  }catch(error){
+
+    alert('ログイン失敗')
+
+  }
+
+}
+
+window.login = login
+
 function toggleSidebar(){
 
   const sidebar =
