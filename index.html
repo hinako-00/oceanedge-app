@@ -1,0 +1,238 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>OceanEdge</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Header -->
+
+  <header class="header">
+
+    <div class="header-left">
+
+      <button class="hamburger" onclick="toggleSidebar()">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </button>
+
+      <h1 class="site-title">
+        OceanEdge
+      </h1>
+
+    </div>
+
+    <div class="header-right">
+
+      <button class="primary-btn">
+        CSV出力
+      </button>
+
+      <button class="primary-btn">
+        Excel出力
+      </button>
+
+      <button class="primary-btn">
+        通知
+      </button>
+
+    </div>
+
+  </header>
+
+  <!-- Sidebar -->
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-menu">
+
+      <button>ダッシュボード</button>
+      <button>KPI管理</button>
+      <button>日報管理</button>
+      <button>顧客管理</button>
+      <button>見込み管理</button>
+      <button>タスク管理</button>
+      <button>スケジュール</button>
+
+    </div>
+
+  </aside>
+
+  <!-- Main -->
+
+  <main class="main">
+
+    <!-- KPI -->
+
+    <section class="card">
+
+      <h2 class="card-title">
+        KPIダッシュボード
+      </h2>
+
+      <div class="kpi-grid">
+
+        <div class="kpi-card">
+          <span>AC数</span>
+          <p>124</p>
+        </div>
+
+        <div class="kpi-card">
+          <span>商談数</span>
+          <p>42</p>
+        </div>
+
+        <div class="kpi-card">
+          <span>契約数</span>
+          <p>17</p>
+        </div>
+
+        <div class="kpi-card">
+          <span>売上</span>
+          <p>¥2.4M</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Graph -->
+
+    <section class="card">
+
+      <h2 class="card-title">
+        営業進捗グラフ
+      </h2>
+
+      <div class="chart-box">
+
+        <canvas id="salesChart"></canvas>
+
+      </div>
+
+    </section>
+
+    <!-- Customer -->
+
+    <section class="card">
+
+      <h2 class="card-title">
+        顧客管理
+      </h2>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>アポインター</th>
+              <th>クライアント名</th>
+              <th>媒体</th>
+              <th>アポ前目標</th>
+              <th>年齢</th>
+              <th>職業</th>
+              <th>結果</th>
+              <th>目標達成</th>
+              <th>詳細</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr>
+
+              <td>ヒナ</td>
+              <td>山田 太郎</td>
+              <td>Instagram</td>
+              <td>面談設定</td>
+              <td>28</td>
+              <td>IT営業</td>
+              <td>繋ぎ</td>
+              <td>○</td>
+              <td>5/12 19:00 空き</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+    <!-- Report -->
+
+    <section class="card">
+
+      <h2 class="card-title">
+        日報履歴
+      </h2>
+
+      <div class="report-item">
+
+        <div class="report-top">
+
+          <strong>
+            2026/05/07
+          </strong>
+
+          <span>
+            ヒナ
+          </span>
+
+        </div>
+
+        <div class="report-text">
+
+          新規架電45件。
+          商談2件。
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+
+  <footer class="footer">
+
+    <div>
+      © 2026 OceanEdge
+    </div>
+
+    <div>
+      Sales Management System
+    </div>
+
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
