@@ -115,144 +115,186 @@
 
   <!-- Main -->
 
-  <main class="main">
+<main class="main">
 
-    <!-- KPI -->
+  <!-- HOME -->
 
-    <section class="card">
+  <section
+  class="page active-page"
+  id="homePage">
 
-      <h2 class="card-title">
-        KPIダッシュボード
-      </h2>
+    <div class="home-grid">
 
-      <div class="kpi-grid">
+      <div
+      class="home-card"
+      onclick="showPage('kpiPage')">
 
-        <div class="kpi-card">
-          <span>AC数</span>
-          <p>124</p>
-        </div>
+        <h3>
+          KPI
+        </h3>
 
-        <div class="kpi-card">
-          <span>商談数</span>
-          <p>42</p>
-        </div>
-
-        <div class="kpi-card">
-          <span>契約数</span>
-          <p>17</p>
-        </div>
-
-        <div class="kpi-card">
-          <span>売上</span>
-          <p>¥2.4M</p>
-        </div>
+        <p>
+          今週契約 17件
+        </p>
 
       </div>
 
-    </section>
+      <div
+      class="home-card"
+      onclick="showPage('reportPage')">
 
-    <!-- Graph -->
+        <h3>
+          日報
+        </h3>
 
-    <section class="card">
-
-      <h2 class="card-title">
-        営業進捗グラフ
-      </h2>
-
-      <div class="chart-box">
-
-        <canvas id="salesChart"></canvas>
+        <p>
+          今日の更新 5件
+        </p>
 
       </div>
 
-    </section>
+      <div
+      class="home-card"
+      onclick="showPage('customerPage')">
 
-    <!-- Customer -->
+        <h3>
+          顧客管理
+        </h3>
 
-   <section
-class="page"
-id="customerPage">
+        <p>
+          登録顧客 24件
+        </p>
 
-  <div class="card">
+      </div>
 
-    <h2>
-      顧客管理
-    </h2>
+      <div class="home-card">
 
-    <input
-    id="customerUser"
-    placeholder="アポインター名">
+        <h3>
+          全体共有
+        </h3>
 
-    <input
-    id="clientName"
-    placeholder="クライアント名">
+        <textarea
+        placeholder="共有メモ">
+        </textarea>
 
-    <input
-    id="clientMedia"
-    placeholder="媒体名">
+      </div>
 
-    <input
-    type="file"
-    id="clientImage">
-
-    <textarea
-    id="clientMemo"
-    placeholder="メモ">
-    </textarea>
-
-    <button
-    class="primary-btn"
-    onclick="saveClient()">
-
-      保存
-
-    </button>
-
-    <div id="clientList">
     </div>
 
-  </div>
+  </section>
 
-</section>
+  <!-- KPI -->
 
-    <!-- Report -->
+  <section
+  class="page"
+  id="kpiPage">
 
-   <section
-class="page"
-id="reportPage">
+    <div class="card">
 
-  <div class="card">
+      <h2>
+        KPI管理
+      </h2>
 
-    <h2>
-      日報
-    </h2>
+      <canvas id="salesChart">
+      </canvas>
 
-    <input
-    id="reportUser"
-    placeholder="アポインター名">
-
-    <textarea
-    id="reportInput"
-    placeholder="今日の報告を書く">
-    </textarea>
-
-    <button
-    class="primary-btn"
-    onclick="saveReport()">
-
-      日報保存
-
-    </button>
-
-    <div id="reportList">
     </div>
 
-  </div>
+  </section>
 
-</section>
+  <!-- 顧客管理 -->
 
-  </main>
+  <section
+  class="page"
+  id="customerPage">
 
+    <div class="card">
+
+      <h2>
+        顧客管理
+      </h2>
+
+      <input
+      id="customerUser"
+      placeholder="アポインター">
+
+      <input
+      id="clientName"
+      placeholder="クライアント名">
+
+      <input
+      id="clientMedia"
+      placeholder="媒体名">
+
+      <input
+      type="file"
+      id="clientImage">
+
+      <textarea
+      id="clientMemo"
+      placeholder="メモ">
+      </textarea>
+
+      <button
+      class="primary-btn"
+      onclick="saveClient()">
+
+        保存
+
+      </button>
+
+      <div id="clientList">
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- 日報 -->
+
+  <section
+  class="page"
+  id="reportPage">
+
+    <div class="card">
+
+      <h2>
+        日報管理
+      </h2>
+
+      <input
+      id="reportUser"
+      placeholder="アポインター">
+
+      <input
+      type="date"
+      id="reportDate">
+
+      <input
+      type="file"
+      id="reportImage">
+
+      <textarea
+      id="reportInput"
+      placeholder="今日の報告">
+      </textarea>
+
+      <button
+      class="primary-btn"
+      onclick="saveReport()">
+
+        保存
+
+      </button>
+
+      <div id="reportList">
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
   <!-- Footer -->
 
   <footer class="footer">

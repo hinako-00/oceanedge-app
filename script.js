@@ -162,27 +162,27 @@ const clientList =
     'clientList'
   )
 
-if(clientList){
+if(reportList){
 
   onSnapshot(
 
     collection(
       db,
-      'clients'
+      'reports'
     ),
 
     (snapshot)=>{
 
-      clientList.innerHTML=''
+      reportList.innerHTML=''
 
       snapshot.forEach(item=>{
 
         const data =
           item.data()
 
-        clientList.innerHTML += `
+        reportList.innerHTML += `
 
-        <div class="customer-card">
+        <div class="report-item">
 
           <div class="customer-top">
 
@@ -190,12 +190,9 @@ if(clientList){
               ${data.user}
             </strong>
 
-            <button
-            onclick="deleteClient('${item.id}')">
-
-              削除
-
-            </button>
+            <span>
+              ${data.date}
+            </span>
 
           </div>
 
@@ -203,17 +200,11 @@ if(clientList){
           src="${data.image}"
           class="customer-image">
 
-          <h3>
-            ${data.name}
-          </h3>
+          <div class="report-text">
 
-          <p>
-            ${data.media}
-          </p>
+            ${data.text}
 
-          <p>
-            ${data.memo}
-          </p>
+          </div>
 
         </div>
 
@@ -248,6 +239,8 @@ window.deleteClient =
 
 // 日報保存
 
+// 日報保存
+
 async function saveReport(){
 
   const user =
@@ -255,10 +248,31 @@ async function saveReport(){
       'reportUser'
     ).value
 
+  const date =
+    document.getElementById(
+      'reportDate'
+    ).value
+
   const text =
     document.getElementById(
       'reportInput'
     ).value
+
+  const image =
+    document.getElementById(
+      'reportImage'
+    ).files[0]
+
+  let imageUrl=''
+
+  if(image){
+
+    imageUrl =
+      URL.createObjectURL(
+        image
+      )
+
+  }
 
   await addDoc(
 
@@ -271,10 +285,13 @@ async function saveReport(){
 
       user:user,
 
+      date:date,
+
       text:text,
 
-      created:
-      new Date()
+      image:imageUrl,
+
+      created:new Date()
 
     }
 
@@ -284,57 +301,3 @@ async function saveReport(){
 
 window.saveReport =
   saveReport
-
-// 日報表示
-
-const reportList =
-  document.getElementById(
-    'reportList'
-  )
-
-if(reportList){
-
-  onSnapshot(
-
-    collection(
-      db,
-      'reports'
-    ),
-
-    (snapshot)=>{
-
-      reportList.innerHTML=''
-
-      snapshot.forEach(item=>{
-
-        const data =
-          item.data()
-
-        reportList.innerHTML += `
-
-        <div class="report-item">
-
-          <div class="customer-top">
-
-            <strong>
-              ${data.user}
-            </strong>
-          </div>
-
-          <div class="report-text">
-
-            ${data.text}
-
-          </div>
-
-        </div>
-
-        `
-
-      })
-
-    }
-
-  )
-
-}
