@@ -219,3 +219,16 @@ if (shareList) {
     });
   });
 }
+if(
+  localStorage.getItem(
+    'oceanedgeLogin'
+  ) === 'true'
+){
+
+  document
+    .getElementById(
+      'loginScreen'
+    )
+    .style.display='none'
+
+}
