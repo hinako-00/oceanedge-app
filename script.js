@@ -10,7 +10,9 @@ import {
   onSnapshot,
   deleteDoc,
   doc
-} from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js';
+}
+from
+'https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js'
 
 // ログイン
 
@@ -74,11 +76,17 @@ window.showPage = showPage;
 
 function openTimeTree(){
 
-  window.location.href = 'https://timetreeapp.com/';
+  window.location.href =
+  'timetree://'
+
+  setTimeout(()=>{
+
+    window.location.href =
+    'https://timetreeapp.com/'
+
+  },1500)
 
 }
-
-window.openTimeTree = openTimeTree;
 
 // グラフ
 
@@ -188,6 +196,17 @@ async function saveClient(){
     memo
 
   });
+  document.getElementById(
+  'clientName'
+).value = ''
+
+document.getElementById(
+  'clientMedia'
+).value = ''
+
+document.getElementById(
+  'clientMemo'
+).value = ''
 
 }
 
@@ -218,6 +237,19 @@ if(clientList){
 
         <p>${data.memo}</p>
 
+        <button
+onclick="
+deleteItem(
+'clients',
+'${item.id}'
+)
+"
+class="delete-btn">
+
+削除
+
+</button>
+
       </div>
 
       `;
@@ -227,3 +259,20 @@ if(clientList){
   });
 
 }
+async function deleteItem(
+  collectionName,
+  id
+){
+
+  await deleteDoc(
+    doc(
+      db,
+      collectionName,
+      id
+    )
+  )
+
+}
+
+window.deleteItem =
+  deleteItem
