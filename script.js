@@ -1,3 +1,4 @@
+```javascript id="ak49vm"
 import {
   auth,
   db
@@ -18,7 +19,7 @@ import {
 }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js"
 
-// ログイン
+// Login
 
 async function login(){
 
@@ -56,7 +57,25 @@ async function login(){
 
 window.login = login
 
-// ページ切替
+// Sidebar
+
+function toggleSidebar(){
+
+  const sidebar =
+    document.getElementById(
+      'sidebar'
+    )
+
+  sidebar.classList.toggle(
+    'active'
+  )
+
+}
+
+window.toggleSidebar =
+  toggleSidebar
+
+// Page
 
 function showPage(pageId){
 
@@ -79,12 +98,79 @@ function showPage(pageId){
       'active-page'
     )
 
+  document
+    .getElementById(
+      'sidebar'
+    )
+    .classList.remove(
+      'active'
+    )
+
 }
 
 window.showPage =
   showPage
 
-// 顧客保存
+// Chart
+
+const ctx =
+  document.getElementById(
+    'salesChart'
+  )
+
+if(ctx){
+
+  new Chart(ctx,{
+
+    type:'line',
+
+    data:{
+
+      labels:[
+        '月',
+        '火',
+        '水',
+        '木',
+        '金',
+        '土',
+        '日'
+      ],
+
+      datasets:[{
+
+        label:'契約数',
+
+        data:[
+          3,
+          5,
+          4,
+          8,
+          6,
+          9,
+          7
+        ],
+
+        borderColor:'#2563eb',
+
+        tension:.4
+
+      }]
+
+    },
+
+    options:{
+
+      responsive:true,
+
+      maintainAspectRatio:false
+
+    }
+
+  })
+
+}
+
+// Customer Save
 
 async function saveClient(){
 
@@ -108,19 +194,20 @@ async function saveClient(){
       'clientMemo'
     ).value
 
-  const image =
+  const files =
     document.getElementById(
       'clientImage'
-    ).files[0]
+    ).files
 
-  let imageUrl=''
+  const images=[]
 
-  if(image){
+  for(let i=0;i<files.length;i++){
 
-    imageUrl =
+    images.push(
       URL.createObjectURL(
-        image
+        files[i]
       )
+    )
 
   }
 
@@ -133,15 +220,11 @@ async function saveClient(){
 
     {
 
-      user:user,
-
-      name:name,
-
-      media:media,
-
-      memo:memo,
-
-      image:imageUrl,
+      user,
+      name,
+      media,
+      memo,
+      images,
 
       created:
       new Date()
@@ -155,11 +238,180 @@ async function saveClient(){
 window.saveClient =
   saveClient
 
-// 顧客表示
+// Customer List
 
 const clientList =
   document.getElementById(
     'clientList'
+  )
+
+if(clientList){
+
+  onSnapshot(
+
+    collection(
+      db,
+      'clients'
+    ),
+
+    (snapshot)=>{
+
+      clientList.innerHTML=''
+
+      snapshot.forEach(item=>{
+
+        const data =
+          item.data()
+
+        let imageHtml=''
+
+        if(data.images){
+
+          data.images.forEach(img=>{
+
+            imageHtml += `
+
+            <img
+            src="${img}"
+            class="customer-image">
+
+            `
+
+          })
+
+        }
+
+        clientList.innerHTML += `
+
+        <div class="customer-card">
+
+          <div class="customer-top">
+
+            <strong>
+              ${data.user}
+            </strong>
+
+            <button
+            onclick="deleteClient('${item.id}')">
+
+              削除
+
+            </button>
+
+          </div>
+
+          ${imageHtml}
+
+          <h3>
+            ${data.name}
+          </h3>
+
+          <p>
+            ${data.media}
+          </p>
+
+          <p>
+            ${data.memo}
+          </p>
+
+        </div>
+
+        `
+
+      })
+
+    }
+
+  )
+
+}
+
+// Delete Client
+
+async function deleteClient(id){
+
+  await deleteDoc(
+
+    doc(
+      db,
+      'clients',
+      id
+    )
+
+  )
+
+}
+
+window.deleteClient =
+  deleteClient
+
+// Report Save
+
+async function saveReport(){
+
+  const user =
+    document.getElementById(
+      'reportUser'
+    ).value
+
+  const date =
+    document.getElementById(
+      'reportDate'
+    ).value
+
+  const text =
+    document.getElementById(
+      'reportInput'
+    ).value
+
+  const files =
+    document.getElementById(
+      'reportImage'
+    ).files
+
+  const images=[]
+
+  for(let i=0;i<files.length;i++){
+
+    images.push(
+      URL.createObjectURL(
+        files[i]
+      )
+    )
+
+  }
+
+  await addDoc(
+
+    collection(
+      db,
+      'reports'
+    ),
+
+    {
+
+      user,
+      date,
+      text,
+      images,
+
+      created:
+      new Date()
+
+    }
+
+  )
+
+}
+
+window.saveReport =
+  saveReport
+
+// Report List
+
+const reportList =
+  document.getElementById(
+    'reportList'
   )
 
 if(reportList){
@@ -180,6 +432,24 @@ if(reportList){
         const data =
           item.data()
 
+        let imageHtml=''
+
+        if(data.images){
+
+          data.images.forEach(img=>{
+
+            imageHtml += `
+
+            <img
+            src="${img}"
+            class="customer-image">
+
+            `
+
+          })
+
+        }
+
         reportList.innerHTML += `
 
         <div class="report-item">
@@ -196,9 +466,7 @@ if(reportList){
 
           </div>
 
-          <img
-          src="${data.image}"
-          class="customer-image">
+          ${imageHtml}
 
           <div class="report-text">
 
@@ -218,80 +486,34 @@ if(reportList){
 
 }
 
-// 削除
+// Task Save
 
-async function deleteClient(id){
-
-  await deleteDoc(
-
-    doc(
-      db,
-      'clients',
-      id
-    )
-
-  )
-
-}
-
-window.deleteClient =
-  deleteClient
-
-// 日報保存
-
-// 日報保存
-
-async function saveReport(){
+async function saveTask(){
 
   const user =
     document.getElementById(
-      'reportUser'
-    ).value
-
-  const date =
-    document.getElementById(
-      'reportDate'
+      'taskUser'
     ).value
 
   const text =
     document.getElementById(
-      'reportInput'
+      'taskInput'
     ).value
-
-  const image =
-    document.getElementById(
-      'reportImage'
-    ).files[0]
-
-  let imageUrl=''
-
-  if(image){
-
-    imageUrl =
-      URL.createObjectURL(
-        image
-      )
-
-  }
 
   await addDoc(
 
     collection(
       db,
-      'reports'
+      'tasks'
     ),
 
     {
 
-      user:user,
+      user,
+      text,
 
-      date:date,
-
-      text:text,
-
-      image:imageUrl,
-
-      created:new Date()
+      created:
+      new Date()
 
     }
 
@@ -299,5 +521,130 @@ async function saveReport(){
 
 }
 
-window.saveReport =
-  saveReport
+window.saveTask =
+  saveTask
+
+// Task List
+
+const taskList =
+  document.getElementById(
+    'taskList'
+  )
+
+if(taskList){
+
+  onSnapshot(
+
+    collection(
+      db,
+      'tasks'
+    ),
+
+    (snapshot)=>{
+
+      taskList.innerHTML=''
+
+      snapshot.forEach(item=>{
+
+        const data =
+          item.data()
+
+        taskList.innerHTML += `
+
+        <div class="task-card">
+
+          <strong>
+            ${data.user}
+          </strong>
+
+          <p>
+            ${data.text}
+          </p>
+
+        </div>
+
+        `
+
+      })
+
+    }
+
+  )
+
+}
+
+// Share Save
+
+async function saveShare(){
+
+  const text =
+    document.getElementById(
+      'shareInput'
+    ).value
+
+  await addDoc(
+
+    collection(
+      db,
+      'shares'
+    ),
+
+    {
+
+      text,
+
+      created:
+      new Date()
+
+    }
+
+  )
+
+}
+
+window.saveShare =
+  saveShare
+
+// Share List
+
+const shareList =
+  document.getElementById(
+    'shareList'
+  )
+
+if(shareList){
+
+  onSnapshot(
+
+    collection(
+      db,
+      'shares'
+    ),
+
+    (snapshot)=>{
+
+      shareList.innerHTML=''
+
+      snapshot.forEach(item=>{
+
+        const data =
+          item.data()
+
+        shareList.innerHTML += `
+
+        <div class="share-card">
+
+          ${data.text}
+
+        </div>
+
+        `
+
+      })
+
+    }
+
+  )
+
+}
+```

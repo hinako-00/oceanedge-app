@@ -1,358 +1,382 @@
-<!-- index.html -->
-
+```html
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>OceanEdge</title>
+  <meta
+  name="viewport"
+  content="width=device-width,
+  initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
+  <title>
+    OceanEdge
+  </title>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link
+  rel="stylesheet"
+  href="style.css">
+
+  <script
+  src="https://cdn.jsdelivr.net/npm/chart.js">
+  </script>
 
 </head>
 
-<nav class="bottom-nav">
-
-  <button>
-    ホーム
-  </button>
-
-  <button>
-    顧客
-  </button>
-
-  <button>
-    日報
-  </button>
-
-  <button>
-    タスク
-  </button>
-
-  <button
-  onclick="
-  window.open(
-  'https://timetreeapp.com/'
-  )">
-
-    予定
-
-  </button>
-
-</nav>
-
 <body>
-    <div class="login-screen" id="loginScreen">
 
-  <div class="login-box">
+  <!-- Login -->
 
-    <h2>
-      OceanEdge Login
-    </h2>
+  <div
+  class="login-screen"
+  id="loginScreen">
 
-    <input
+    <div class="login-box">
+
+      <h2>
+        OceanEdge
+      </h2>
+
+      <input
       type="email"
       id="email"
-      placeholder="メールアドレス">
+      placeholder="メール">
 
-    <input
+      <input
       type="password"
       id="password"
       placeholder="パスワード">
 
-    <button onclick="login()">
-      ログイン
-    </button>
+      <button onclick="login()">
+        ログイン
+      </button>
+
+    </div>
 
   </div>
 
-</div>
+  <!-- Sidebar -->
+
+  <aside
+  class="sidebar"
+  id="sidebar">
+
+    <h1>
+      OceanEdge
+    </h1>
+
+    <button
+    onclick="showPage('homePage')">
+      HOME
+    </button>
+
+    <button
+    onclick="showPage('customerPage')">
+      顧客管理
+    </button>
+
+    <button
+    onclick="showPage('reportPage')">
+      日報
+    </button>
+
+    <button
+    onclick="showPage('taskPage')">
+      タスク
+    </button>
+
+    <button
+    onclick="showPage('sharePage')">
+      全体共有
+    </button>
+
+  </aside>
 
   <!-- Header -->
 
   <header class="header">
 
-    <div class="header-left">
+    <button
+    class="menu-btn"
+    onclick="toggleSidebar()">
 
-      <button class="hamburger" onclick="toggleSidebar()">
+      ☰
 
-        <span></span>
-        <span></span>
-        <span></span>
+    </button>
 
-      </button>
-
-      <h1 class="site-title">
-        OceanEdge
-      </h1>
-
-    </div>
+    <h2>
+      OceanEdge
+    </h2>
 
   </header>
 
-  <!-- Sidebar -->
-
-  <aside class="sidebar" id="sidebar">
-
-    <div class="sidebar-menu">
-
-      <button>ダッシュボード</button>
-      <button>KPI管理</button>
-      <button>日報管理</button>
-      <button>顧客管理</button>
-      <button>見込み管理</button>
-      <button>タスク管理</button>
-      <button>スケジュール</button>
-
-    </div>
-
-  </aside>
-
   <!-- Main -->
 
-<main class="main">
+  <main class="main">
 
-  <!-- HOME -->
+    <!-- HOME -->
 
-  <section
-  class="page active-page"
-  id="homePage">
+    <section
+    class="page active-page"
+    id="homePage">
 
-    <div class="home-grid">
+      <div class="hero-card">
 
-      <div
-      class="home-card"
-      onclick="showPage('kpiPage')">
+        <h1>
+          Welcome Back
+        </h1>
 
-        <h3>
+        <p>
+          今日の営業状況
+        </p>
+
+      </div>
+
+      <div class="home-grid">
+
+        <div
+        class="home-card"
+        onclick="showPage('customerPage')">
+
+          <h3>
+            顧客管理
+          </h3>
+
+          <span>
+            CLIENT
+          </span>
+
+        </div>
+
+        <div
+        class="home-card"
+        onclick="showPage('reportPage')">
+
+          <h3>
+            日報
+          </h3>
+
+          <span>
+            REPORT
+          </span>
+
+        </div>
+
+        <div
+        class="home-card"
+        onclick="showPage('taskPage')">
+
+          <h3>
+            タスク
+          </h3>
+
+          <span>
+            TASK
+          </span>
+
+        </div>
+
+        <div
+        class="home-card"
+        onclick="showPage('sharePage')">
+
+          <h3>
+            全体共有
+          </h3>
+
+          <span>
+            SHARE
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <h2>
           KPI
-        </h3>
+        </h2>
 
-        <p>
-          今週契約 17件
-        </p>
-
-      </div>
-
-      <div
-      class="home-card"
-      onclick="showPage('reportPage')">
-
-        <h3>
-          日報
-        </h3>
-
-        <p>
-          今日の更新 5件
-        </p>
+        <canvas id="salesChart">
+        </canvas>
 
       </div>
 
-      <div
-      class="home-card"
-      onclick="showPage('customerPage')">
+    </section>
 
-        <h3>
+    <!-- Customer -->
+
+    <section
+    class="page"
+    id="customerPage">
+
+      <div class="card">
+
+        <h2>
           顧客管理
-        </h3>
+        </h2>
 
-        <p>
-          登録顧客 24件
-        </p>
+        <input
+        id="customerUser"
+        placeholder="担当者">
 
-      </div>
+        <input
+        id="clientName"
+        placeholder="クライアント名">
 
-      <div class="home-card">
+        <input
+        id="clientMedia"
+        placeholder="媒体名">
 
-        <h3>
-          全体共有
-        </h3>
+        <input
+        type="file"
+        id="clientImage"
+        multiple>
 
         <textarea
-        placeholder="共有メモ">
+        id="clientMemo"
+        placeholder="メモ">
         </textarea>
 
+        <button
+        class="primary-btn"
+        onclick="saveClient()">
+
+          保存
+
+        </button>
+
+        <div id="clientList">
+        </div>
+
       </div>
 
-    </div>
+    </section>
 
-  </section>
+    <!-- Report -->
 
-  <!-- KPI -->
+    <section
+    class="page"
+    id="reportPage">
 
-  <section
-  class="page"
-  id="kpiPage">
+      <div class="card">
 
-    <div class="card">
+        <h2>
+          日報
+        </h2>
 
-      <h2>
-        KPI管理
-      </h2>
+        <input
+        id="reportUser"
+        placeholder="担当者">
 
-      <canvas id="salesChart">
-      </canvas>
+        <input
+        type="date"
+        id="reportDate">
 
-    </div>
+        <input
+        type="file"
+        id="reportImage"
+        multiple>
 
-  </section>
+        <textarea
+        id="reportInput"
+        placeholder="今日の報告">
+        </textarea>
 
-  <!-- 顧客管理 -->
+        <button
+        class="primary-btn"
+        onclick="saveReport()">
 
-  <section
-  class="page"
-  id="customerPage">
+          保存
 
-    <div class="card">
+        </button>
 
-      <h2>
-        顧客管理
-      </h2>
+        <div id="reportList">
+        </div>
 
-      <input
-      id="customerUser"
-      placeholder="アポインター">
-
-      <input
-      id="clientName"
-      placeholder="クライアント名">
-
-      <input
-      id="clientMedia"
-      placeholder="媒体名">
-
-      <input
-      type="file"
-      id="clientImage">
-
-      <textarea
-      id="clientMemo"
-      placeholder="メモ">
-      </textarea>
-
-      <button
-      class="primary-btn"
-      onclick="saveClient()">
-
-        保存
-
-      </button>
-
-      <div id="clientList">
       </div>
 
-    </div>
+    </section>
 
-  </section>
+    <!-- Task -->
 
-  <!-- 日報 -->
+    <section
+    class="page"
+    id="taskPage">
 
-  <section
-  class="page"
-  id="reportPage">
+      <div class="card">
 
-    <div class="card">
+        <h2>
+          個人タスク
+        </h2>
 
-      <h2>
-        日報管理
-      </h2>
+        <input
+        id="taskUser"
+        placeholder="担当者">
 
-      <input
-      id="reportUser"
-      placeholder="アポインター">
+        <textarea
+        id="taskInput"
+        placeholder="タスク入力">
+        </textarea>
 
-      <input
-      type="date"
-      id="reportDate">
+        <button
+        class="primary-btn"
+        onclick="saveTask()">
 
-      <input
-      type="file"
-      id="reportImage">
+          タスク追加
 
-      <textarea
-      id="reportInput"
-      placeholder="今日の報告">
-      </textarea>
+        </button>
 
-      <button
-      class="primary-btn"
-      onclick="saveReport()">
+        <div id="taskList">
+        </div>
 
-        保存
-
-      </button>
-
-      <div id="reportList">
       </div>
 
-    </div>
+    </section>
 
-  </section>
+    <!-- Share -->
 
-</main>
-  <!-- Footer -->
+    <section
+    class="page"
+    id="sharePage">
 
-  <footer class="footer">
+      <div class="card">
 
-    <div>
-      © 2026 OceanEdge
-    </div>
+        <h2>
+          全体共有
+        </h2>
 
-    <div>
-      Sales Management System
-    </div>
+        <textarea
+        id="shareInput"
+        placeholder="共有事項">
+        </textarea>
 
-  </footer>
+        <button
+        class="primary-btn"
+        onclick="saveShare()">
 
-  <script type="module" src="script.js"></script>
+          投稿
+
+        </button>
+
+        <div id="shareList">
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script
+  type="module"
+  src="script.js">
+  </script>
 
 </body>
 
-<nav class="bottom-nav">
-
-  <button
-  onclick="showPage('homePage')">
-
-    ホーム
-
-  </button>
-
-  <button
-  onclick="showPage('customerPage')">
-
-    顧客
-
-  </button>
-
-  <button
-  onclick="showPage('reportPage')">
-
-    日報
-
-  </button>
-
-  <button
-  onclick="showPage('taskPage')">
-
-    タスク
-
-  </button>
-
-  <button
-onclick="
-window.location.href=
-'timetree://'
-">
-
-予定
-
-</button>
-
-</nav>
-
 </html>
+```
