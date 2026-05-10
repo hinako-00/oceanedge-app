@@ -1,273 +1,262 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OceanEdge</title>
 
-  <link
-    rel="stylesheet"
-    href="style.css">
+  <link rel="stylesheet" href="style.css" />
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/chart.js">
-  </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-  <!-- Login -->
+  <!-- LOGIN -->
 
-  <div
-    class="login-screen"
-    id="loginScreen">
+  <div class="login-screen" id="loginScreen">
 
-    <div class="login-box">
+    <div class="login-card">
 
       <h1>OceanEdge</h1>
 
-      <input
-        type="email"
-        id="email"
-        placeholder="メール">
+      <input type="email" id="email" placeholder="メールアドレス" />
 
-      <input
-        type="password"
-        id="password"
-        placeholder="パスワード">
+      <input type="password" id="password" placeholder="パスワード" />
 
-      <button onclick="login()">
+      <button onclick="login()" class="primary-btn">
         ログイン
       </button>
 
     </div>
 
   </div>
-
-  <!-- Header -->
+<!-- HEADER -->
 
   <header class="header">
 
-    <h2>OceanEdge</h2>
+    <div>
+      <h2>OceanEdge</h2>
+      <p>営業管理システム</p>
+    </div>
+
+    <button onclick="openTimeTree()" class="time-btn">
+      TimeTree
+    </button>
 
   </header>
 
-  <!-- Main -->
+  <!-- HOME -->
 
-  <main class="main">
+  <main class="page active-page" id="homePage">
 
-    <!-- HOME -->
+    <div class="hero-card">
+      <h1>Dashboard</h1>
+      <p>Today Overview</p>
+    </div>
 
-    <section
-      class="page active-page"
-      id="homePage">
-
-      <div class="hero-card">
-
-        <h1>
-          Dashboard
-        </h1>
-
-        <p>
-          Today Overview
-        </p>
-
+    <div class="notification-wrap">
+           <div class="notice-card">
+        🔔 タスク追加
       </div>
 
-      <div class="home-grid">
-
-        <div class="home-card">
-          <h3>KPI</h3>
-          <span>17件</span>
-        </div>
-
-        <div class="home-card">
-          <h3>日報</h3>
-          <span>5件更新</span>
-        </div>
-
-        <div class="home-card">
-          <h3>顧客</h3>
-          <span>24件</span>
-        </div>
-
-        <div class="home-card">
-          <h3>タスク</h3>
-          <span>8件</span>
-        </div>
-
+      <div class="notice-card">
+        🔔 共有追加
       </div>
 
-      <div class="card">
-
-        <h2>KPI</h2>
-
-        <canvas id="salesChart">
-        </canvas>
-
+      <div class="notice-card">
+        🔔 日報未提出
       </div>
 
-    </section>
+    </div>
 
-    <!-- Customer -->
+    <div class="home-grid">
 
-    <section
-      class="page"
-      id="customerPage">
-
-      <div class="card">
-
-        <h2>顧客管理</h2>
-
-        <input
-          id="customerUser"
-          placeholder="担当者">
-
-        <input
-          id="clientName"
-          placeholder="クライアント名">
-
-        <input
-          id="clientMedia"
-          placeholder="媒体名">
-
-        <textarea
-          id="clientMemo"
-          placeholder="メモ"></textarea>
-
-        <button
-          class="primary-btn"
-          onclick="saveClient()">
-
-          保存
-
-        </button>
-
-        <div id="clientList">
-        </div>
-
+      <div class="mini-card">
+        <h3>KPI</h3>
+        <span>17件</span>
       </div>
 
-    </section>
-
-    <!-- Report -->
-
-    <section
-      class="page"
-      id="reportPage">
-
-      <div class="card">
-
-        <h2>日報</h2>
-
-        <input
-          id="reportUser"
-          placeholder="担当者">
-
-        <input
-          type="date"
-          id="reportDate">
-
-        <textarea
-          id="reportInput"
-          placeholder="今日の報告"></textarea>
-
-        <button
-          class="primary-btn"
-          onclick="saveReport()">
-
-          保存
-
-        </button>
-
-        <div id="reportList">
-        </div>
-
+      <div class="mini-card">
+        <h3>顧客</h3>
+        <span>24件</span>
       </div>
 
-    </section>
-
-    <!-- Task -->
-
-    <section
-      class="page"
-      id="taskPage">
-
-      <div class="card">
-
-        <h2>タスク</h2>
-
-        <input
-          id="taskUser"
-          placeholder="担当者">
-
-        <textarea
-          id="taskInput"
-          placeholder="タスク"></textarea>
-
-        <button
-          class="primary-btn"
-          onclick="saveTask()">
-
-          保存
-
-        </button>
-
-        <div id="taskList">
-        </div>
-
+      <div class="mini-card">
+        <h3>日報</h3>
+        <span>5件</span>
+      </div>
+  <div class="mini-card">
+        <h3>タスク</h3>
+        <span>8件</span>
       </div>
 
-    </section>
+    </div>
+
+    <div class="card">
+
+      <div class="section-title">
+        <h2>今日やること</h2>
+      </div>
+
+      <input id="todoUser" placeholder="担当者" />
+
+      <input id="todoInput" placeholder="タスク入力" />
+
+      <button onclick="saveTodo()" class="primary-btn">
+        追加
+      </button>
+
+      <div id="todoList"></div>
+
+    </div>
+
+    <div class="card">
+
+      <h2>KPI</h2>
+      <canvas id="salesChart"></canvas>
+
+    </div>
 
   </main>
 
-  <!-- Bottom Nav -->
+  <!-- CUSTOMER -->
+
+  <main class="page" id="customerPage">
+
+    <div class="card">
+
+      <div class="section-title">
+        <h2>顧客管理</h2>
+      </div>
+
+      <input id="customerUser" placeholder="担当者" />
+
+      <input id="clientName" placeholder="クライアント名" />
+
+      <input id="clientMedia" placeholder="媒体名" />
+
+      <select id="clientStatus">
+        <option>未対応</option>
+        <option>アポ済</option>
+        <option>商談</option>
+        <option>契約</option>
+        <option>NG</option>
+      </select>
+ <textarea id="clientMemo" placeholder="メモ"></textarea>
+
+      <input type="file" id="clientImages" multiple />
+
+      <button onclick="saveClient()" class="primary-btn">
+        保存
+      </button>
+
+      <div id="clientList"></div>
+
+    </div>
+
+  </main>
+
+  <!-- REPORT -->
+
+  <main class="page" id="reportPage">
+
+    <div class="card">
+
+      <h2>日報</h2>
+  <input id="reportUser" placeholder="担当者" />
+
+      <input type="date" id="reportDate" />
+
+      <textarea id="reportDone" placeholder="今日やったこと"></textarea>
+
+      <textarea id="reportIssue" placeholder="課題"></textarea>
+
+      <textarea id="reportNext" placeholder="明日やること"></textarea>
+
+      <input type="file" id="reportImages" multiple />
+
+      <button onclick="saveReport()" class="primary-btn">
+        保存
+      </button>
+
+      <div id="reportList"></div>
+
+    </div>
+
+  </main>
+
+  <!-- TASK -->
+
+  <main class="page" id="taskPage">
+
+    <div class="card">
+
+      <h2>タスク管理</h2>
+   <input id="taskUser" placeholder="担当者" />
+
+      <input id="taskInput" placeholder="タスク内容" />
+
+      <button onclick="saveTask()" class="primary-btn">
+        保存
+      </button>
+
+      <div id="taskList"></div>
+
+    </div>
+
+  </main>
+
+  <!-- SCHEDULE -->
+
+  <main class="page" id="schedulePage">
+
+    <div class="card">
+
+      <h2>予定</h2>
+
+      <p>
+        TimeTreeと連携
+      </p>
+
+      <button onclick="openTimeTree()" class="primary-btn">
+        TimeTreeを開く
+      </button>
+
+    </div>
+ </main>
+
+  <!-- BOTTOM NAV -->
 
   <nav class="bottom-nav">
 
-    <button
-      onclick="showPage('homePage')">
-
+    <button onclick="showPage('homePage')">
+      <span>🏠</span>
       HOME
-
     </button>
 
-    <button
-      onclick="showPage('customerPage')">
-
+    <button onclick="showPage('customerPage')">
+      <span>👤</span>
       顧客
-
     </button>
 
-    <button
-      onclick="showPage('reportPage')">
-
+    <button onclick="showPage('reportPage')">
+      <span>📝</span>
       日報
-
     </button>
 
-    <button
-      onclick="showPage('taskPage')">
-
+    <button onclick="showPage('taskPage')">
+      <span>✔</span>
       タスク
+    </button>
 
+    <button onclick="showPage('schedulePage')">
+      <span>📅</span>
+      予定
     </button>
 
   </nav>
 
-  <script
-    type="module"
-    src="script.js">
-  </script>
-
+  <script type="module" src="script.js"></script>
 </body>
-
 </html>
