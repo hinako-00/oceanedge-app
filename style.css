@@ -403,5 +403,14 @@ body{
 body{
   padding-bottom:90px;
 }
+/* Page */
+
+.page{
+  display:none;
+}
+
+.active-page{
+  display:block;
+}
 
 }

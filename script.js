@@ -108,3 +108,28 @@ if(ctx){
   })
 
 }
+// ページ切り替え
+
+function showPage(pageId){
+
+  const pages =
+    document.querySelectorAll('.page')
+
+  pages.forEach(page=>{
+
+    page.classList.remove(
+      'active-page'
+    )
+
+  })
+
+  document
+    .getElementById(pageId)
+    .classList.add(
+      'active-page'
+    )
+
+}
+
+window.showPage =
+  showPage
