@@ -1,5 +1,3 @@
-// script.js
-
 import {
   auth,
   db
@@ -14,7 +12,9 @@ from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js"
 import {
   collection,
   addDoc,
-  onSnapshot
+  onSnapshot,
+  deleteDoc,
+  doc
 }
 from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js"
 
@@ -44,9 +44,9 @@ async function login(){
       .getElementById(
         'loginScreen'
       )
-      .style.display = 'none'
+      .style.display='none'
 
-  }catch(error){
+  }catch{
 
     alert('ログイン失敗')
 
@@ -56,25 +56,7 @@ async function login(){
 
 window.login = login
 
-// サイドバー
-
-function toggleSidebar(){
-
-  const sidebar =
-    document.getElementById(
-      'sidebar'
-    )
-
-  sidebar.classList.toggle(
-    'active'
-  )
-
-}
-
-window.toggleSidebar =
-  toggleSidebar
-
-// ページ切り替え
+// ページ切替
 
 function showPage(pageId){
 
@@ -102,251 +84,14 @@ function showPage(pageId){
 window.showPage =
   showPage
 
-// TimeTree
-
-function openTimeTree(){
-
-  window.location.href =
-    'timetree://'
-
-  setTimeout(()=>{
-
-    window.open(
-      'https://timetreeapp.com/',
-      '_blank'
-    )
-
-  },1000)
-
-}
-
-window.openTimeTree =
-  openTimeTree
-
-// グラフ
-
-const ctx =
-  document.getElementById(
-    'salesChart'
-  )
-
-if(ctx){
-
-  new Chart(ctx,{
-
-    type:'bar',
-
-    data:{
-
-      labels:[
-        '月',
-        '火',
-        '水',
-        '木',
-        '金'
-      ],
-
-      datasets:[{
-
-        label:'契約数',
-
-        data:[
-          3,
-          5,
-          8,
-          4,
-          7
-        ],
-
-        backgroundColor:[
-          '#2563eb',
-          '#3b82f6',
-          '#60a5fa',
-          '#93c5fd',
-          '#bfdbfe'
-        ]
-
-      }]
-
-    },
-
-    options:{
-
-      responsive:true,
-
-      maintainAspectRatio:false
-
-    }
-
-  })
-
-}
-
-// 日報保存
-
-async function saveReport(){
-
-  const text =
-    document.getElementById(
-      'reportInput'
-    ).value
-
-  if(!text) return
-
-  await addDoc(
-
-    collection(
-      db,
-      'reports'
-    ),
-
-    {
-
-      text:text,
-
-      created:new Date()
-
-    }
-
-  )
-
-  document.getElementById(
-    'reportInput'
-  ).value=''
-
-}
-
-window.saveReport =
-  saveReport
-
-// 日報取得
-
-const reportList =
-  document.getElementById(
-    'reportList'
-  )
-
-if(reportList){
-
-  onSnapshot(
-
-    collection(
-      db,
-      'reports'
-    ),
-
-    (snapshot)=>{
-
-      reportList.innerHTML=''
-
-      snapshot.forEach(doc=>{
-
-        const data =
-          doc.data()
-
-        reportList.innerHTML += `
-
-        <div class="report-item">
-
-          <div class="report-text">
-
-            ${data.text}
-
-          </div>
-
-        </div>
-
-        `
-
-      })
-
-    }
-
-  )
-
-}
-
-// タスク保存
-
-async function saveTask(){
-
-  const text =
-    document.getElementById(
-      'taskInput'
-    ).value
-
-  if(!text) return
-
-  await addDoc(
-
-    collection(
-      db,
-      'tasks'
-    ),
-
-    {
-
-      text:text
-
-    }
-
-  )
-
-  document.getElementById(
-    'taskInput'
-  ).value=''
-
-}
-
-window.saveTask =
-  saveTask
-
-// タスク取得
-
-const taskList =
-  document.getElementById(
-    'taskList'
-  )
-
-if(taskList){
-
-  onSnapshot(
-
-    collection(
-      db,
-      'tasks'
-    ),
-
-    (snapshot)=>{
-
-      taskList.innerHTML=''
-
-      snapshot.forEach(doc=>{
-
-        const data =
-          doc.data()
-
-        taskList.innerHTML += `
-
-        <div class="customer-card">
-
-          ${data.text}
-
-        </div>
-
-        `
-
-      })
-
-    }
-
-  )
-
-}
-
 // 顧客保存
 
 async function saveClient(){
+
+  const user =
+    document.getElementById(
+      'customerUser'
+    ).value
 
   const name =
     document.getElementById(
@@ -388,6 +133,8 @@ async function saveClient(){
 
     {
 
+      user:user,
+
       name:name,
 
       media:media,
@@ -396,7 +143,8 @@ async function saveClient(){
 
       image:imageUrl,
 
-      created:new Date()
+      created:
+      new Date()
 
     }
 
@@ -407,7 +155,7 @@ async function saveClient(){
 window.saveClient =
   saveClient
 
-// 顧客一覧
+// 顧客表示
 
 const clientList =
   document.getElementById(
@@ -427,14 +175,29 @@ if(clientList){
 
       clientList.innerHTML=''
 
-      snapshot.forEach(doc=>{
+      snapshot.forEach(item=>{
 
         const data =
-          doc.data()
+          item.data()
 
         clientList.innerHTML += `
 
         <div class="customer-card">
+
+          <div class="customer-top">
+
+            <strong>
+              ${data.user}
+            </strong>
+
+            <button
+            onclick="deleteClient('${item.id}')">
+
+              削除
+
+            </button>
+
+          </div>
 
           <img
           src="${data.image}"
@@ -451,6 +214,118 @@ if(clientList){
           <p>
             ${data.memo}
           </p>
+
+        </div>
+
+        `
+
+      })
+
+    }
+
+  )
+
+}
+
+// 削除
+
+async function deleteClient(id){
+
+  await deleteDoc(
+
+    doc(
+      db,
+      'clients',
+      id
+    )
+
+  )
+
+}
+
+window.deleteClient =
+  deleteClient
+
+// 日報保存
+
+async function saveReport(){
+
+  const user =
+    document.getElementById(
+      'reportUser'
+    ).value
+
+  const text =
+    document.getElementById(
+      'reportInput'
+    ).value
+
+  await addDoc(
+
+    collection(
+      db,
+      'reports'
+    ),
+
+    {
+
+      user:user,
+
+      text:text,
+
+      created:
+      new Date()
+
+    }
+
+  )
+
+}
+
+window.saveReport =
+  saveReport
+
+// 日報表示
+
+const reportList =
+  document.getElementById(
+    'reportList'
+  )
+
+if(reportList){
+
+  onSnapshot(
+
+    collection(
+      db,
+      'reports'
+    ),
+
+    (snapshot)=>{
+
+      reportList.innerHTML=''
+
+      snapshot.forEach(item=>{
+
+        const data =
+          item.data()
+
+        reportList.innerHTML += `
+
+        <div class="report-item">
+
+          <div class="customer-top">
+
+            <strong>
+              ${data.user}
+            </strong>
+          </div>
+
+          <div class="report-text">
+
+            ${data.text}
+
+          </div>
 
         </div>
 

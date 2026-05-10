@@ -169,7 +169,7 @@
 
     <!-- Customer -->
 
-    <section
+   <section
 class="page"
 id="customerPage">
 
@@ -180,36 +180,16 @@ id="customerPage">
     </h2>
 
     <input
-    id="searchInput"
-    placeholder="顧客検索">
-
-    <select id="filterMedia">
-
-      <option value="">
-        全媒体
-      </option>
-
-      <option>
-        Instagram
-      </option>
-
-      <option>
-        TikTok
-      </option>
-
-      <option>
-        LINE
-      </option>
-
-    </select>
+    id="customerUser"
+    placeholder="アポインター名">
 
     <input
     id="clientName"
-    placeholder="顧客名">
+    placeholder="クライアント名">
 
     <input
     id="clientMedia"
-    placeholder="媒体">
+    placeholder="媒体名">
 
     <input
     type="file"
@@ -217,14 +197,14 @@ id="customerPage">
 
     <textarea
     id="clientMemo"
-    placeholder="詳細">
+    placeholder="メモ">
     </textarea>
 
     <button
     class="primary-btn"
     onclick="saveClient()">
 
-      顧客保存
+      保存
 
     </button>
 
@@ -237,36 +217,39 @@ id="customerPage">
 
     <!-- Report -->
 
-    <section class="card">
+   <section
+class="page"
+id="reportPage">
 
-      <h2 class="card-title">
-        日報履歴
-      </h2>
+  <div class="card">
 
-      <div class="report-item">
+    <h2>
+      日報
+    </h2>
 
-        <div class="report-top">
+    <input
+    id="reportUser"
+    placeholder="アポインター名">
 
-          <strong>
-            2026/05/07
-          </strong>
+    <textarea
+    id="reportInput"
+    placeholder="今日の報告を書く">
+    </textarea>
 
-          <span>
-            ヒナ
-          </span>
+    <button
+    class="primary-btn"
+    onclick="saveReport()">
 
-        </div>
+      日報保存
 
-        <div class="report-text">
+    </button>
 
-          新規架電45件。
-          商談2件。
+    <div id="reportList">
+    </div>
 
-        </div>
+  </div>
 
-      </div>
-
-    </section>
+</section>
 
   </main>
 

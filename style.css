@@ -457,5 +457,50 @@ select{
   border-radius:14px;
 
 }
+.customer-top{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:12px;
+
+}
+
+.customer-top button{
+
+  border:none;
+
+  background:#ef4444;
+
+  color:white;
+
+  padding:8px 12px;
+
+  border-radius:10px;
+
+}
+
+textarea{
+
+  min-height:120px;
+
+}
+
+.report-item{
+
+  background:white;
+
+  border-radius:20px;
+
+  padding:20px;
+
+  margin-top:15px;
+
+  box-shadow:0 3px 10px rgba(0,0,0,.05);
+
+}
 
 }
