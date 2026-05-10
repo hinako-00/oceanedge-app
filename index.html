@@ -7,20 +7,17 @@
   <meta charset="UTF-8">
 
   <meta
-  name="viewport"
-  content="width=device-width,
-  initial-scale=1.0">
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
-  <title>
-    OceanEdge
-  </title>
+  <title>OceanEdge</title>
 
   <link
-  rel="stylesheet"
-  href="style.css">
+    rel="stylesheet"
+    href="style.css">
 
   <script
-  src="https://cdn.jsdelivr.net/npm/chart.js">
+    src="https://cdn.jsdelivr.net/npm/chart.js">
   </script>
 
 </head>
@@ -30,24 +27,22 @@
   <!-- Login -->
 
   <div
-  class="login-screen"
-  id="loginScreen">
+    class="login-screen"
+    id="loginScreen">
 
     <div class="login-box">
 
-      <h2>
-        OceanEdge
-      </h2>
+      <h2>OceanEdge</h2>
 
       <input
-      type="email"
-      id="email"
-      placeholder="メール">
+        type="email"
+        id="email"
+        placeholder="メールアドレス">
 
       <input
-      type="password"
-      id="password"
-      placeholder="パスワード">
+        type="password"
+        id="password"
+        placeholder="パスワード">
 
       <button onclick="login()">
         ログイン
@@ -60,35 +55,28 @@
   <!-- Sidebar -->
 
   <aside
-  class="sidebar"
-  id="sidebar">
+    class="sidebar"
+    id="sidebar">
 
-    <h1>
-      OceanEdge
-    </h1>
+    <h1>OceanEdge</h1>
 
-    <button
-    onclick="showPage('homePage')">
+    <button onclick="showPage('homePage')">
       HOME
     </button>
 
-    <button
-    onclick="showPage('customerPage')">
+    <button onclick="showPage('customerPage')">
       顧客管理
     </button>
 
-    <button
-    onclick="showPage('reportPage')">
+    <button onclick="showPage('reportPage')">
       日報
     </button>
 
-    <button
-    onclick="showPage('taskPage')">
+    <button onclick="showPage('taskPage')">
       タスク
     </button>
 
-    <button
-    onclick="showPage('sharePage')">
+    <button onclick="showPage('sharePage')">
       全体共有
     </button>
 
@@ -99,16 +87,14 @@
   <header class="header">
 
     <button
-    class="menu-btn"
-    onclick="toggleSidebar()">
+      class="menu-btn"
+      onclick="toggleSidebar()">
 
       ☰
 
     </button>
 
-    <h2>
-      OceanEdge
-    </h2>
+    <h2>OceanEdge</h2>
 
   </header>
 
@@ -119,17 +105,15 @@
     <!-- HOME -->
 
     <section
-    class="page active-page"
-    id="homePage">
+      class="page active-page"
+      id="homePage">
 
       <div class="hero-card">
 
-        <h1>
-          Welcome Back
-        </h1>
+        <h1>Dashboard</h1>
 
         <p>
-          今日の営業状況
+          OceanEdge Management
         </p>
 
       </div>
@@ -137,12 +121,10 @@
       <div class="home-grid">
 
         <div
-        class="home-card"
-        onclick="showPage('customerPage')">
+          class="home-card"
+          onclick="showPage('customerPage')">
 
-          <h3>
-            顧客管理
-          </h3>
+          <h3>顧客管理</h3>
 
           <span>
             CLIENT
@@ -151,12 +133,10 @@
         </div>
 
         <div
-        class="home-card"
-        onclick="showPage('reportPage')">
+          class="home-card"
+          onclick="showPage('reportPage')">
 
-          <h3>
-            日報
-          </h3>
+          <h3>日報</h3>
 
           <span>
             REPORT
@@ -165,12 +145,10 @@
         </div>
 
         <div
-        class="home-card"
-        onclick="showPage('taskPage')">
+          class="home-card"
+          onclick="showPage('taskPage')">
 
-          <h3>
-            タスク
-          </h3>
+          <h3>タスク</h3>
 
           <span>
             TASK
@@ -179,12 +157,10 @@
         </div>
 
         <div
-        class="home-card"
-        onclick="showPage('sharePage')">
+          class="home-card"
+          onclick="showPage('sharePage')">
 
-          <h3>
-            全体共有
-          </h3>
+          <h3>全体共有</h3>
 
           <span>
             SHARE
@@ -196,9 +172,7 @@
 
       <div class="card">
 
-        <h2>
-          KPI
-        </h2>
+        <h2>KPI</h2>
 
         <canvas id="salesChart">
         </canvas>
@@ -210,40 +184,37 @@
     <!-- Customer -->
 
     <section
-    class="page"
-    id="customerPage">
+      class="page"
+      id="customerPage">
 
       <div class="card">
 
-        <h2>
-          顧客管理
-        </h2>
+        <h2>顧客管理</h2>
 
         <input
-        id="customerUser"
-        placeholder="担当者">
+          id="customerUser"
+          placeholder="担当者">
 
         <input
-        id="clientName"
-        placeholder="クライアント名">
+          id="clientName"
+          placeholder="クライアント名">
 
         <input
-        id="clientMedia"
-        placeholder="媒体名">
+          id="clientMedia"
+          placeholder="媒体名">
 
         <input
-        type="file"
-        id="clientImage"
-        multiple>
+          type="file"
+          id="clientImage"
+          multiple>
 
         <textarea
-        id="clientMemo"
-        placeholder="メモ">
-        </textarea>
+          id="clientMemo"
+          placeholder="メモ"></textarea>
 
         <button
-        class="primary-btn"
-        onclick="saveClient()">
+          class="primary-btn"
+          onclick="saveClient()">
 
           保存
 
@@ -259,36 +230,33 @@
     <!-- Report -->
 
     <section
-    class="page"
-    id="reportPage">
+      class="page"
+      id="reportPage">
 
       <div class="card">
 
-        <h2>
-          日報
-        </h2>
+        <h2>日報</h2>
 
         <input
-        id="reportUser"
-        placeholder="担当者">
+          id="reportUser"
+          placeholder="担当者">
 
         <input
-        type="date"
-        id="reportDate">
+          type="date"
+          id="reportDate">
 
         <input
-        type="file"
-        id="reportImage"
-        multiple>
+          type="file"
+          id="reportImage"
+          multiple>
 
         <textarea
-        id="reportInput"
-        placeholder="今日の報告">
-        </textarea>
+          id="reportInput"
+          placeholder="今日の報告"></textarea>
 
         <button
-        class="primary-btn"
-        onclick="saveReport()">
+          class="primary-btn"
+          onclick="saveReport()">
 
           保存
 
@@ -304,29 +272,26 @@
     <!-- Task -->
 
     <section
-    class="page"
-    id="taskPage">
+      class="page"
+      id="taskPage">
 
       <div class="card">
 
-        <h2>
-          個人タスク
-        </h2>
+        <h2>タスク</h2>
 
         <input
-        id="taskUser"
-        placeholder="担当者">
+          id="taskUser"
+          placeholder="担当者">
 
         <textarea
-        id="taskInput"
-        placeholder="タスク入力">
-        </textarea>
+          id="taskInput"
+          placeholder="タスク内容"></textarea>
 
         <button
-        class="primary-btn"
-        onclick="saveTask()">
+          class="primary-btn"
+          onclick="saveTask()">
 
-          タスク追加
+          追加
 
         </button>
 
@@ -340,23 +305,20 @@
     <!-- Share -->
 
     <section
-    class="page"
-    id="sharePage">
+      class="page"
+      id="sharePage">
 
       <div class="card">
 
-        <h2>
-          全体共有
-        </h2>
+        <h2>全体共有</h2>
 
         <textarea
-        id="shareInput"
-        placeholder="共有事項">
-        </textarea>
+          id="shareInput"
+          placeholder="共有内容"></textarea>
 
         <button
-        class="primary-btn"
-        onclick="saveShare()">
+          class="primary-btn"
+          onclick="saveShare()">
 
           投稿
 
@@ -372,8 +334,8 @@
   </main>
 
   <script
-  type="module"
-  src="script.js">
+    type="module"
+    src="script.js">
   </script>
 
 </body>

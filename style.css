@@ -1,33 +1,150 @@
-```css id="pq48vm"
-/* Reset */
-
+css
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:
-  -apple-system,
-  BlinkMacSystemFont,
-  sans-serif;
+  font-family:sans-serif;
 }
 
 body{
   background:#eef4ff;
-  color:#0f172a;
-  min-height:100vh;
+  color:#111827;
 }
 
-/* Login */
+.header{
+  position:sticky;
+  top:0;
+  background:white;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+  z-index:1000;
+}
 
-.login-screen{
-  position:fixed;
-  inset:0;
-  background:
-  linear-gradient(
+.menu-btn{
+  border:none;
+  background:none;
+  font-size:24px;
+}
+
+.main{
+  padding:20px;
+}
+
+.page{
+  display:none;
+}
+
+.active-page{
+  display:block;
+}
+
+.hero-card{
+  background:linear-gradient(
     135deg,
     #2563eb,
     #60a5fa
   );
+  color:white;
+  border-radius:24px;
+  padding:25px;
+  margin-bottom:20px;
+}
+
+.home-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.home-card{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  min-height:130px;
+  box-shadow:0 3px 10px rgba(0,0,0,.05);
+}
+
+.home-card h3{
+  color:#2563eb;
+  margin-bottom:10px;
+}
+
+.card{
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 3px 10px rgba(0,0,0,.05);
+}
+
+.card h2{
+  margin-bottom:20px;
+  color:#2563eb;
+}
+
+input,
+textarea{
+  width:100%;
+  padding:15px;
+  border:none;
+  background:#f1f5f9;
+  border-radius:14px;
+  margin-bottom:15px;
+}
+
+textarea{
+  min-height:120px;
+}
+
+.primary-btn{
+  width:100%;
+  border:none;
+  background:#2563eb;
+  color:white;
+  padding:15px;
+  border-radius:14px;
+  margin-bottom:15px;
+}
+
+.customer-card,
+.report-item,
+.task-card,
+.share-card{
+  background:#f8fbff;
+  border-radius:18px;
+  padding:15px;
+  margin-top:15px;
+}
+
+.customer-image{
+  width:100%;
+  border-radius:14px;
+  margin-top:10px;
+}
+
+.customer-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.customer-top button{
+  border:none;
+  background:#ef4444;
+  color:white;
+  padding:8px 12px;
+  border-radius:10px;
+}
+
+.login-screen{
+  position:fixed;
+  inset:0;
+  background:#2563eb;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -38,50 +155,26 @@ body{
   width:90%;
   max-width:380px;
   background:white;
-  padding:35px;
-  border-radius:28px;
-  box-shadow:
-  0 10px 30px
-  rgba(0,0,0,.15);
+  padding:30px;
+  border-radius:24px;
 }
 
 .login-box h2{
   text-align:center;
   color:#2563eb;
-  margin-bottom:25px;
+  margin-bottom:20px;
 }
-
-.login-box input{
-  width:100%;
-  padding:15px;
-  border:none;
-  background:#f1f5f9;
-  border-radius:16px;
-  margin-bottom:15px;
-}
-
-.login-box button{
-  width:100%;
-  border:none;
-  background:#2563eb;
-  color:white;
-  padding:15px;
-  border-radius:16px;
-  font-size:15px;
-}
-
-/* Sidebar */
 
 .sidebar{
   position:fixed;
   top:0;
-  left:-260px;
+  left:-250px;
   width:240px;
   height:100%;
   background:#1e3a8a;
   padding:30px 20px;
-  z-index:9999;
   transition:.3s;
+  z-index:9999;
 }
 
 .sidebar.active{
@@ -90,7 +183,7 @@ body{
 
 .sidebar h1{
   color:white;
-  margin-bottom:30px;
+  margin-bottom:20px;
 }
 
 .sidebar button{
@@ -99,234 +192,11 @@ body{
   background:none;
   color:white;
   text-align:left;
-  padding:16px 0;
-  font-size:16px;
+  padding:15px 0;
 }
-
-/* Header */
-
-.header{
-  position:sticky;
-  top:0;
-  background:white;
-  padding:18px 20px;
-  display:flex;
-  align-items:center;
-  gap:15px;
-  box-shadow:
-  0 2px 10px
-  rgba(0,0,0,.05);
-  z-index:1000;
-}
-
-.menu-btn{
-  border:none;
-  background:none;
-  font-size:24px;
-}
-
-.header h2{
-  color:#2563eb;
-}
-
-/* Main */
-
-.main{
-  padding:20px;
-}
-
-/* Page */
-
-.page{
-  display:none;
-}
-
-.active-page{
-  display:block;
-}
-
-/* Hero */
-
-.hero-card{
-  background:
-  linear-gradient(
-    135deg,
-    #2563eb,
-    #60a5fa
-  );
-  color:white;
-  border-radius:28px;
-  padding:28px;
-  margin-bottom:20px;
-  box-shadow:
-  0 8px 20px
-  rgba(37,99,235,.3);
-}
-
-.hero-card h1{
-  font-size:28px;
-  margin-bottom:8px;
-}
-
-/* Home */
-
-.home-grid{
-  display:grid;
-  grid-template-columns:
-  repeat(
-    2,
-    1fr
-  );
-  gap:16px;
-  margin-bottom:20px;
-}
-
-.home-card{
-  background:white;
-  border-radius:24px;
-  padding:24px;
-  min-height:140px;
-  box-shadow:
-  0 5px 15px
-  rgba(0,0,0,.05);
-  transition:.2s;
-}
-
-.home-card:active{
-  transform:scale(.98);
-}
-
-.home-card h3{
-  margin-bottom:12px;
-  color:#2563eb;
-}
-
-.home-card span{
-  color:#64748b;
-  font-size:13px;
-}
-
-/* Card */
-
-.card{
-  background:white;
-  border-radius:28px;
-  padding:24px;
-  margin-bottom:20px;
-  box-shadow:
-  0 5px 15px
-  rgba(0,0,0,.05);
-}
-
-.card h2{
-  margin-bottom:20px;
-  color:#2563eb;
-}
-
-/* Form */
-
-input,
-textarea{
-  width:100%;
-  border:none;
-  background:#f1f5f9;
-  padding:16px;
-  border-radius:18px;
-  margin-bottom:15px;
-  font-size:14px;
-}
-
-textarea{
-  min-height:120px;
-  resize:none;
-}
-
-/* Button */
-
-.primary-btn{
-  width:100%;
-  border:none;
-  background:
-  linear-gradient(
-    135deg,
-    #2563eb,
-    #60a5fa
-  );
-  color:white;
-  padding:16px;
-  border-radius:18px;
-  font-size:15px;
-  margin-bottom:20px;
-}
-
-/* Customer */
-
-.customer-card{
-  background:#f8fbff;
-  border-radius:24px;
-  padding:18px;
-  margin-top:15px;
-}
-
-.customer-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
-}
-
-.customer-top button{
-  border:none;
-  background:#ef4444;
-  color:white;
-  padding:8px 12px;
-  border-radius:12px;
-}
-
-.customer-image{
-  width:100%;
-  border-radius:18px;
-  margin-bottom:12px;
-}
-
-/* Report */
-
-.report-item{
-  background:#f8fbff;
-  border-radius:24px;
-  padding:18px;
-  margin-top:15px;
-}
-
-.report-text{
-  margin-top:12px;
-  line-height:1.7;
-}
-
-/* Task */
-
-.task-card{
-  background:#eff6ff;
-  border-left:
-  5px solid #2563eb;
-  border-radius:18px;
-  padding:18px;
-  margin-top:15px;
-}
-
-/* Share */
-
-.share-card{
-  background:#f8fbff;
-  border-radius:20px;
-  padding:18px;
-  margin-top:15px;
-}
-
-/* Chart */
 
 canvas{
   width:100% !important;
   height:250px !important;
 }
-```
+
