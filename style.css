@@ -412,5 +412,50 @@ body{
 .active-page{
   display:block;
 }
+/* Customer */
+
+.customer-card{
+
+  background:white;
+
+  border-radius:20px;
+
+  padding:18px;
+
+  margin-top:15px;
+
+  box-shadow:0 3px 10px rgba(0,0,0,.05);
+
+}
+
+.customer-image{
+
+  width:100%;
+
+  height:180px;
+
+  object-fit:cover;
+
+  border-radius:16px;
+
+  margin-bottom:10px;
+
+}
+
+input,
+textarea,
+select{
+
+  width:100%;
+
+  padding:14px;
+
+  margin-top:12px;
+
+  border:1px solid #dbeafe;
+
+  border-radius:14px;
+
+}
 
 }

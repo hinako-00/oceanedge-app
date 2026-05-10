@@ -169,57 +169,71 @@
 
     <!-- Customer -->
 
-    <section class="card">
+    <section
+class="page"
+id="customerPage">
 
-      <h2 class="card-title">
-        顧客管理
-      </h2>
+  <div class="card">
 
-      <div class="table-wrap">
+    <h2>
+      顧客管理
+    </h2>
 
-        <table>
+    <input
+    id="searchInput"
+    placeholder="顧客検索">
 
-          <thead>
+    <select id="filterMedia">
 
-            <tr>
+      <option value="">
+        全媒体
+      </option>
 
-              <th>アポインター</th>
-              <th>クライアント名</th>
-              <th>媒体</th>
-              <th>アポ前目標</th>
-              <th>年齢</th>
-              <th>職業</th>
-              <th>結果</th>
-              <th>目標達成</th>
-              <th>詳細</th>
+      <option>
+        Instagram
+      </option>
 
-            </tr>
+      <option>
+        TikTok
+      </option>
 
-          </thead>
+      <option>
+        LINE
+      </option>
 
-          <tbody>
+    </select>
 
-            <tr>
+    <input
+    id="clientName"
+    placeholder="顧客名">
 
-              <td>ヒナ</td>
-              <td>山田 太郎</td>
-              <td>Instagram</td>
-              <td>面談設定</td>
-              <td>28</td>
-              <td>IT営業</td>
-              <td>繋ぎ</td>
-              <td>○</td>
-              <td>5/12 19:00 空き</td>
+    <input
+    id="clientMedia"
+    placeholder="媒体">
 
-            </tr>
+    <input
+    type="file"
+    id="clientImage">
 
-          </tbody>
+    <textarea
+    id="clientMemo"
+    placeholder="詳細">
+    </textarea>
 
-        </table>
+    <button
+    class="primary-btn"
+    onclick="saveClient()">
 
-      </div>
+      顧客保存
 
-    </section>
+    </button>
+
+    <div id="clientList">
+    </div>
+
+  </div>
+
+</section>
 
     <!-- Report -->
 
