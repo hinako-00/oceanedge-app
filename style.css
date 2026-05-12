@@ -210,3 +210,28 @@ canvas{
   width:100% !important;
   height:250px !important;
 }
+.folder-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.folder-card{
+  background:white;
+  border-radius:24px;
+  padding:24px;
+  text-align:center;
+  font-size:18px;
+  box-shadow:
+  0 4px 12px rgba(0,0,0,.05);
+}
+
+.folder-card:active{
+  transform:scale(.98);
+}
+
+.notice-card{
+  border-left:
+  5px solid #2563eb;
+}

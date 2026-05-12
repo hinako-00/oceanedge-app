@@ -196,6 +196,13 @@ async function saveClient(){
     memo
 
   });
+  await addDoc(
+  collection(db,'notifications'),
+  {
+    text:
+    user + 'が日報更新'
+  }
+)
   document.getElementById(
   'clientName'
 ).value = ''
@@ -276,3 +283,53 @@ async function deleteItem(
 
 window.deleteItem =
   deleteItem
+  function openUserFolder(user){
+
+  alert(
+    user + 'のページ'
+  )
+
+}
+
+window.openUserFolder =
+  openUserFolder
+
+const notificationList =
+document.getElementById(
+  'notificationList'
+)
+
+if(notificationList){
+
+  onSnapshot(
+    collection(
+      db,
+      'notifications'
+    ),
+
+    (snapshot)=>{
+
+      notificationList.innerHTML=''
+
+      snapshot.forEach((item)=>{
+
+        const data =
+        item.data()
+
+        notificationList.innerHTML += `
+
+        <div class="notice-card">
+
+          🔔 ${data.text}
+
+        </div>
+
+        `
+
+      })
+
+    }
+
+  )
+
+}
